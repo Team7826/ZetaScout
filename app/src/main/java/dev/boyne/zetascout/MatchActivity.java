@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MatchActivity extends AppCompatActivity {
 
     ListView listview;
     Button addButton;
@@ -28,33 +28,32 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_match);
 
         this.application = ((ZetaScout) this.getApplication());
-        listview = findViewById(R.id.matchlist);
-        addButton = findViewById(R.id.addmatchbutton);
-        currentMatch = 0;
+        listview = findViewById(R.id.teamlist);
+        addButton = findViewById(R.id.addteambutton);
 
         final List<String> MatchList = new ArrayList<>(Arrays.asList(InternalMatchList));
         final ArrayAdapter<String> adapter = new ArrayAdapter<>
-                (MainActivity.this, android.R.layout.simple_list_item_1, MatchList);
+                (MatchActivity.this, android.R.layout.simple_list_item_1, MatchList);
         listview.setAdapter(adapter);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 currentMatch++;
-                MatchList.add("Match " + currentMatch);
+                MatchList.add("Team " + currentMatch);
                 application.addMatch();
                 adapter.notifyDataSetChanged();
-                Toast.makeText(getApplicationContext(), "Added match", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Added team", Toast.LENGTH_SHORT).show();
             }
         });
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int index, long id) {
                 System.out.println(MatchList.get(index));
-                startActivity(new Intent(MainActivity.this, MatchActivity.class));
+                startActivity(new Intent(MatchActivity.this, MainActivity.class));
             }
         });
         listview.setOnItemLongClickListener((adapterView, view, index, id) -> {

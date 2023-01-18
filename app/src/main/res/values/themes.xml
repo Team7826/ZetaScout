@@ -2,9 +2,18 @@
     <!-- Base application theme. -->
     <style name="Theme.ZetaScout" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryDark">@color/purple_700</item>
-        <item name="colorAccent">@color/teal_200</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/black</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.ZetaScout.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.ZetaScout.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.ZetaScout.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
