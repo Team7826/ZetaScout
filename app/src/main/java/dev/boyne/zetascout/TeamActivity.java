@@ -34,7 +34,7 @@ public class MatchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_match);
+        setContentView(R.layout.activity_team);
 
         this.application = ((ZetaScout) this.getApplication());
         listview = findViewById(R.id.teamlist);

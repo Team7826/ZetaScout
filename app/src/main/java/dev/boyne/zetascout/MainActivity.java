@@ -54,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int index, long id) {
                 System.out.println(MatchList.get(index));
-                startActivity(new Intent(MainActivity.this, MatchActivity.class));
+                Intent match = new Intent(MainActivity.this, MatchActivity.class);
+                match.putExtra("matchID", index);
+                startActivity(match);
             }
         });
         listview.setOnItemLongClickListener((adapterView, view, index, id) -> {
