@@ -68,7 +68,10 @@ public class MatchActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int index, long id) {
                 System.out.println(TeamList.get(index));
-                startActivity(new Intent(MatchActivity.this, MainActivity.class));
+                Intent match = new Intent(MatchActivity.this, TeamActivity.class);
+                match.putExtra("teamID", TeamList.get(index));
+                match.putExtra("matchID", matchID);
+                startActivity(match);
 
             }
         });

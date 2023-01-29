@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/top"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,36 +15,809 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/teamdata"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:isScrollContainer="true"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="@id/teamname"
+        android:text="Save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/datascroller"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="54dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/teamname">
 
         <LinearLayout
-            android:id="@+id/totalpointswrapper"
+            android:id="@+id/teamdata"
             android:layout_width="match_parent"
-            android:layout_height="50sp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:isScrollContainer="true"
+            android:orientation="vertical">
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/pointcategories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TabItem
+                    android:id="@+id/teleoptab"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Teleop" />
+
+                <android.support.design.widget.TabItem
+                    android:id="@+id/autonomoustab"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Autonomous" />
+
+            </android.support.design.widget.TabLayout>
+
+            <LinearLayout
+                android:id="@+id/totalconeswrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/totalconeslabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Total Cones Scored" />
+
+                <LinearLayout
+                    android:id="@+id/conetypewrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/upperconewrapper"
+                        android:layout_width="match_parent"
+                        android:layout_height="40sp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/upperconelabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Upper" />
+
+                        <Button
+                            android:id="@+id/coneupperminus"
+                            android:layout_width="50sp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="-" />
+
+                        <EditText
+                            android:id="@+id/upperconeinput"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="numberDecimal"
+                            android:text="0" />
+
+                        <Button
+                            android:id="@+id/coneupperplus"
+                            android:layout_width="50sp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="+" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/middleconewrapper"
+                        android:layout_width="match_parent"
+                        android:layout_height="40sp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/middleconelabel"
+                            android:layout_width="49dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Middle" />
+
+                        <Button
+                            android:id="@+id/conemiddleminus"
+                            android:layout_width="50sp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="-" />
+
+                        <EditText
+                            android:id="@+id/middleconeinput"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="numberDecimal"
+                            android:text="0" />
+
+                        <Button
+                            android:id="@+id/conemiddleplus"
+                            android:layout_width="50sp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="+" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lowerconewrapper"
+                        android:layout_width="match_parent"
+                        android:layout_height="40sp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/lowerconelabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Lower" />
+
+                        <Button
+                            android:id="@+id/conelowerminus"
+                            android:layout_width="50sp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="-" />
+
+                        <EditText
+                            android:id="@+id/lowerconeinput"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="numberDecimal"
+                            android:text="0" />
+
+                        <Button
+                            android:id="@+id/conelowerplus"
+                            android:layout_width="50sp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="+" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/totalcubeswrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/totalcubeslabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Total Cubes Scored" />
+
+                <LinearLayout
+                    android:id="@+id/cubetypewrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/uppercubewrapper"
+                        android:layout_width="match_parent"
+                        android:layout_height="40sp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/uppercubelabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Upper" />
+
+                        <Button
+                            android:id="@+id/cubeupperminus"
+                            android:layout_width="50sp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="-" />
+
+                        <EditText
+                            android:id="@+id/uppercubeinput"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="numberDecimal"
+                            android:text="0" />
+
+                        <Button
+                            android:id="@+id/cubeupperplus"
+                            android:layout_width="50sp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="+" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/middlecubewrapper"
+                        android:layout_width="match_parent"
+                        android:layout_height="40sp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/middlecubelabel"
+                            android:layout_width="53dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Middle" />
+
+                        <Button
+                            android:id="@+id/cubemiddleminus"
+                            android:layout_width="50sp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="-" />
+
+                        <EditText
+                            android:id="@+id/middlecubeinput"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="numberDecimal"
+                            android:text="0" />
+
+                        <Button
+                            android:id="@+id/cubemiddleplus"
+                            android:layout_width="50sp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="+" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lowercubewrapper"
+                        android:layout_width="match_parent"
+                        android:layout_height="40sp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/lowercubelabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Lower" />
+
+                        <Button
+                            android:id="@+id/cubelowerminus"
+                            android:layout_width="50sp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="-" />
+
+                        <EditText
+                            android:id="@+id/lowercubeinput"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="numberDecimal"
+                            android:text="0" />
+
+                        <Button
+                            android:id="@+id/cubelowerplus"
+                            android:layout_width="50sp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="+" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/balancesuccesseswrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/balancesuccessesengagedlabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Successful engaged balances" />
+
+                <LinearLayout
+                    android:id="@+id/balancesuccessengagedwrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/balancesuccessengagedminus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="-" />
+
+                    <EditText
+                        android:id="@+id/balancesuccessesengagedinput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:text="0" />
+
+                    <Button
+                        android:id="@+id/balancesuccessengagedplus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="+" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/balancesuccesseslabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Successful balances" />
+
+                <LinearLayout
+                    android:id="@+id/balancesuccesswrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/balancesuccessminus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="-" />
+
+                    <EditText
+                        android:id="@+id/balancesuccessesinput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:text="0" />
+
+                    <Button
+                        android:id="@+id/balancesuccessplus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="+" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/balanceunsuccesseslabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Unsuccessful balances" />
+
+                <LinearLayout
+                    android:id="@+id/balanceunsuccesswrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/balanceunsuccessminus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="-" />
+
+                    <EditText
+                        android:id="@+id/balanceunsuccessesinput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:text="0" />
+
+                    <Button
+                        android:id="@+id/balanceunsuccessplus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="+" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/mobilitycheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="Got Mobility Bonus" />
+
+            <CheckBox
+                android:id="@+id/parkedcheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="Got Parking Bonus" />
+
+            <LinearLayout
+                android:id="@+id/linksscoredouterwrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/linkslabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Links scored" />
+
+                <LinearLayout
+                    android:id="@+id/linksscoredwrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/linksminus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="-" />
+
+                    <EditText
+                        android:id="@+id/linksinput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:text="0" />
+
+                    <Button
+                        android:id="@+id/linksplus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="+" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/penaltypointsouterwrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/scorepenaltieslabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Points scored from penalties" />
+
+                <LinearLayout
+                    android:id="@+id/penaltiesscoredwrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/penaltiesminus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="-" />
+
+                    <EditText
+                        android:id="@+id/penaltiesinput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:text="0" />
+
+                    <Button
+                        android:id="@+id/penaltiesplus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="+" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/liftcapabilitywrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/liftcapabilitylabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lift capability" />
+
+                <LinearLayout
+                    android:id="@+id/liftcapabilityconewrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="50sp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/coneonlowcheck"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Cone on Low" />
+
+                    <CheckBox
+                        android:id="@+id/coneonmidcheck"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Cone on Mid" />
+
+                    <CheckBox
+                        android:id="@+id/coneonhighcheck"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Cone on High" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/liftcapabilitycubewrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="50sp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/cubeonlowcheck"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Cube on Low" />
+
+                    <CheckBox
+                        android:id="@+id/cubeonmidcheck"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Cube on Mid" />
+
+                    <CheckBox
+                        android:id="@+id/cubeonhighcheck"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Cube on High" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pinsrobotinflictswrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/totalpinslabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Total Pins Inflicted" />
+
+                <SeekBar
+                    android:id="@+id/totalpinsseeker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2048"
+                    android:max="20" />
+
+                <TextView
+                    android:id="@+id/totalpinsinflictedvalue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="0" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pinsrobottakeswrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/totalpinstakenlabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Total Pins Taken" />
+
+                <SeekBar
+                    android:id="@+id/totalpinstakenseeker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2048"
+                    android:max="20" />
+
+                <TextView
+                    android:id="@+id/totalpinstakenvalue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="0" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/penaltieswrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/penaltieslabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Penalties" />
+
+                <SeekBar
+                    android:id="@+id/penaltiesseeker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2048"
+                    android:max="20" />
+
+                <TextView
+                    android:id="@+id/penaltiesvalue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="0" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/defensewrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/defenselabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Defense Rating (1-10)" />
+
+                <SeekBar
+                    android:id="@+id/defenseseeker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2048"
+                    android:max="9" />
+
+                <TextView
+                    android:id="@+id/defensevalue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cooperationwrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/cooperationlabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cooperation Rating (1-10)" />
+
+                <SeekBar
+                    android:id="@+id/cooperationseeker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2048"
+                    android:max="9" />
+
+                <TextView
+                    android:id="@+id/cooperationvalue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/drivingwrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/drivinglabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Driving Rating (1-10)" />
+
+                <SeekBar
+                    android:id="@+id/drivingseeker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2048"
+                    android:max="9" />
+
+                <TextView
+                    android:id="@+id/drivingvalue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="1" />
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/totalpointslabel"
-                android:layout_width="wrap_content"
+                android:id="@+id/noteslabel"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Total Points Scored" />
+                android:text="Team Notes" />
 
             <EditText
-                android:id="@+id/totalpointsinput"
-                android:layout_width="wrap_content"
+                android:id="@+id/notes"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:ems="10"
-                android:hint="400 Quintillion"
-                android:inputType="numberDecimal" />
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:minHeight="100sp"
+                android:text="No notes" />
+
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>

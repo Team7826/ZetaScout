@@ -13,7 +13,7 @@ public class ZetaScout extends Application {
     public ArrayList<HashMap<String, HashMap>> matchData = new ArrayList<>();
 
     HashMap newMatch = new HashMap();
-    HashMap newTeam = new HashMap();
+    HashMap newTeam = new HashMap() {};
 
     public ZetaScout() {
         super.onCreate();
