@@ -13,10 +13,13 @@ public class ZetaScout extends Application {
     public ArrayList<HashMap<String, HashMap>> matchData = new ArrayList<>();
 
     HashMap newMatch = new HashMap();
-    HashMap newTeam = new HashMap() {};
+    HashMap newTeam = new HashMap<Integer, HashMap>();
+
+    boolean didLoadExport = false;
 
     public ZetaScout() {
         super.onCreate();
+
     }
 
     public void addMatch() {
@@ -24,9 +27,17 @@ public class ZetaScout extends Application {
         matchData.add((HashMap) newMatch.clone());
     }
 
+    public void clearMatchData(int id) {
+        matchData.get(id).clear();
+    }
+
     public void addTeam(int matchID, String teamID) {
 
         matchData.get(matchID).put(teamID, (HashMap) newTeam.clone());
+    }
+
+    public void populateTeamData(int matchID, String teamID, HashMap teamData) {
+        matchData.get(matchID).put(teamID, teamData);
     }
 
     public HashMap getTeamsInMatch(int matchID) {
