@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Create a new file that points to the root directory, with the given name:
-        File file = new File(getExternalFilesDir(null), "zetascout.json");
+        File file = new File(Environment.getExternalStoragePublicDirectory("Documents"), "zetascout.json");
 
         //This point and below is responsible for the write operation
         FileOutputStream outputStream = null;
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         //This point and below is responsible for the write operation
         FileInputStream inputStream = null;
         try {
-            inputStream = new FileInputStream(new File(getExternalFilesDir(null), "zetascout.json"));
+            inputStream = new FileInputStream(new File(Environment.getExternalStoragePublicDirectory("Documents"), "zetascout.json"));
 
             BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
             StringBuilder total = new StringBuilder();
