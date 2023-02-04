@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
         String data = readFile();
 
+        System.out.println("Read: " + data);
+
         if (data.equals("NOTFOUND")) {
             Toast.makeText(getApplicationContext(), "Previous export not found.", Toast.LENGTH_SHORT).show();
         } else if (data.equals("ERROR")) {
@@ -132,12 +134,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Create a new file that points to the root directory, with the given name:
-        File file = new File(Environment.getExternalStoragePublicDirectory("Documents"), "zetascout.json");
+        File file = new File(Environment.getExternalStoragePublicDirectory("Documents") + "/zetascout.json");
+        System.out.println(file.getAbsolutePath());
 
         //This point and below is responsible for the write operation
         FileOutputStream outputStream = null;
         try {
-            file.createNewFile();
+            boolean works = file.createNewFile();
+            if (!works) {
+                System.out.println("Deleted? " + file.delete());
+                file.createNewFile();
+            }
             //second argument of FileOutputStream constructor indicates whether
             //to append or create new file if one exists
             outputStream = new FileOutputStream(file, true);
@@ -145,8 +152,10 @@ public class MainActivity extends AppCompatActivity {
             outputStream.write(matchData.getBytes());
             outputStream.flush();
             outputStream.close();
+            System.out.println("Wrote successfully");
         } catch (Exception e) {
             e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Error: " + e, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -156,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         //This point and below is responsible for the write operation
         FileInputStream inputStream = null;
         try {
-            inputStream = new FileInputStream(new File(Environment.getExternalStoragePublicDirectory("Documents"), "zetascout.json"));
+            inputStream = new FileInputStream(new File(Environment.getExternalStoragePublicDirectory("Documents") + "/zetascout.json"));
 
             BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
             StringBuilder total = new StringBuilder();
