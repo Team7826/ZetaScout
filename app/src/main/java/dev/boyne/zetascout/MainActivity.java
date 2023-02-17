@@ -3,6 +3,7 @@ package dev.boyne.zetascout;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Environment;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
     ListView listview;
     Button addButton;
     Button exportButton;
-    int currentMatch;
-    String[] InternalMatchList = new String[] {};
+    EditText teamIdInput;
+    String[] InternalTeamList = new String[] {};
 
     ZetaScout application;
 
@@ -40,17 +43,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_match);
 
         this.application = ((ZetaScout) this.getApplication());
-        listview = findViewById(R.id.matchlist);
-        addButton = findViewById(R.id.addmatchbutton);
+        listview = findViewById(R.id.teamlist);
+        addButton = findViewById(R.id.addteambutton);
         exportButton = findViewById(R.id.export);
-        currentMatch = 0;
+        teamIdInput = findViewById(R.id.teamidinput);
 
-        final List<String> MatchList = new ArrayList<>(Arrays.asList(InternalMatchList));
+        final List<String> TeamList = new ArrayList<>(Arrays.asList(InternalTeamList));
         final ArrayAdapter<String> adapter = new ArrayAdapter<>
-                (MainActivity.this, android.R.layout.simple_list_item_1, MatchList);
+                (MainActivity.this, android.R.layout.simple_list_item_1, TeamList);
         listview.setAdapter(adapter);
 
 
@@ -66,13 +69,12 @@ public class MainActivity extends AppCompatActivity {
 
             try {
 
-                application.matchData = new ObjectMapper().readValue(data, new TypeReference<ArrayList>() {});
-                for (int i = 0; i < application.matchData.size(); i++) {
-                    currentMatch++;
-                    MatchList.add("Match " + currentMatch);
+                application.matchData = new ObjectMapper().readValue(data, new TypeReference<HashMap>() {});
+                for (String team : application.matchData.keySet()) {
+                    TeamList.add(team);
                     adapter.notifyDataSetChanged();
                 }
-                System.out.println("Match data loaded: " + application.matchData);
+                System.out.println("Team data loaded: " + application.matchData);
                 Toast.makeText(getApplicationContext(), "Loaded last export.", Toast.LENGTH_SHORT).show();
                 application.didLoadExport = true;
 
@@ -88,11 +90,22 @@ public class MainActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentMatch++;
-                MatchList.add("Match " + currentMatch);
-                application.addMatch();
-                adapter.notifyDataSetChanged();
-                Toast.makeText(getApplicationContext(), "Added match", Toast.LENGTH_SHORT).show();
+                String id = teamIdInput.getText().toString();
+                if (id.contains(".")) {
+                    Toast.makeText(getApplicationContext(), "No decimals allowed!", Toast.LENGTH_SHORT).show();
+                }
+                else if (TeamList.contains(id)) {
+                    Toast.makeText(getApplicationContext(), "That team's already in the list!", Toast.LENGTH_SHORT).show();
+                }
+                else if (!id.equals("")) {
+                    TeamList.add(id);
+                    application.addTeam(id);
+                    teamIdInput.setText("");
+
+
+                    adapter.notifyDataSetChanged();
+                    Toast.makeText(getApplicationContext(), "Added match", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         exportButton.setOnClickListener(new View.OnClickListener() {
@@ -112,15 +125,15 @@ public class MainActivity extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int index, long id) {
-                System.out.println(MatchList.get(index));
-                Intent match = new Intent(MainActivity.this, MatchActivity.class);
-                match.putExtra("matchID", index);
+                System.out.println("Index: " + index + ", get: " + TeamList.get(index));
+                Intent match = new Intent(MainActivity.this, TeamActivity.class);
+                match.putExtra("teamID", TeamList.get(index));
                 startActivity(match);
             }
         });
         listview.setOnItemLongClickListener((adapterView, view, index, id) -> {
             application.clearMatchData(index);
-            Toast.makeText(getApplicationContext(), "Match data cleared for " + MatchList.get(index), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Data cleared for " + TeamList.get(index), Toast.LENGTH_SHORT).show();
             return true;
         });
 
@@ -180,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
             if (e.toString().contains("ENOENT")) {
                 return "NOTFOUND";
             } else {
+                System.out.println("ERROR:");
                 e.printStackTrace();
             }
         }

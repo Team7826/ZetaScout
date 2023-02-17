@@ -20,7 +20,6 @@ import java.util.Set;
 
 public class MatchActivity extends AppCompatActivity {
 
-    int matchID;
 
     ListView listview;
     Button addButton;
@@ -40,13 +39,12 @@ public class MatchActivity extends AppCompatActivity {
         listview = findViewById(R.id.teamlist);
         addButton = findViewById(R.id.addteambutton);
         teamID = findViewById(R.id.teamidinput);
-        matchID = getIntent().getIntExtra("matchID", 0);
 
         final List<String> TeamList = new ArrayList<>(Arrays.asList(InternalTeamList));
         final ArrayAdapter<String> adapter = new ArrayAdapter<>
                 (MatchActivity.this, android.R.layout.simple_list_item_1, TeamList);
 
-        Object[] currentTeams = application.getTeamsInMatch(matchID).keySet().toArray();
+        Object[] currentTeams = application.matchData.keySet().toArray();
 
         for (int i = 0; i < currentTeams.length; i++) {
             TeamList.add((String) currentTeams[i]);
@@ -58,7 +56,7 @@ public class MatchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 TeamList.add(teamID.getText().toString());
-                application.addTeam(matchID, teamID.getText().toString());
+                application.addTeam(teamID.getText().toString());
                 adapter.notifyDataSetChanged();
                 Toast.makeText(getApplicationContext(), "Added team", Toast.LENGTH_SHORT).show();
                 teamID.setText("");
@@ -70,14 +68,13 @@ public class MatchActivity extends AppCompatActivity {
                 System.out.println(TeamList.get(index));
                 Intent match = new Intent(MatchActivity.this, TeamActivity.class);
                 match.putExtra("teamID", TeamList.get(index));
-                match.putExtra("matchID", matchID);
                 startActivity(match);
 
             }
         });
         listview.setOnItemLongClickListener((adapterView, view, index, id) -> {
             Toast.makeText(getApplicationContext(), "Removed team " + TeamList.get(index), Toast.LENGTH_SHORT).show();
-            application.removeTeam(matchID, TeamList.get(index));
+            application.removeTeam(TeamList.get(index));
             TeamList.remove(index);
             //adapter.remove(TeamList.get(index));
             adapter.notifyDataSetChanged();

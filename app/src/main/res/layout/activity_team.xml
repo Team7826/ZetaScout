@@ -2,9 +2,10 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/top"
+    android:id="@+id/teamtop"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#8798FF">
 
     <TextView
         android:id="@+id/teamname"
@@ -41,7 +42,7 @@
             <android.support.design.widget.TabLayout
                 android:id="@+id/pointcategories"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="70sp">
 
                 <android.support.design.widget.TabItem
                     android:id="@+id/teleoptab"
@@ -80,28 +81,28 @@
                     <LinearLayout
                         android:id="@+id/upperconewrapper"
                         android:layout_width="match_parent"
-                        android:layout_height="40sp"
+                        android:layout_height="60sp"
                         android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/upperconelabel"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:layout_weight="-1"
                             android:text="Upper" />
 
                         <Button
                             android:id="@+id/coneupperminus"
                             android:layout_width="50sp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0"
                             android:text="-" />
 
                         <EditText
                             android:id="@+id/upperconeinput"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="100"
                             android:ems="10"
                             android:inputType="numberDecimal"
                             android:text="0" />
@@ -110,36 +111,36 @@
                             android:id="@+id/coneupperplus"
                             android:layout_width="50sp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0"
                             android:text="+" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/middleconewrapper"
                         android:layout_width="match_parent"
-                        android:layout_height="40sp"
+                        android:layout_height="60sp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/middleconelabel"
                             android:layout_width="49dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:layout_weight="-1"
                             android:text="Middle" />
 
                         <Button
                             android:id="@+id/conemiddleminus"
                             android:layout_width="50sp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0"
                             android:text="-" />
 
                         <EditText
                             android:id="@+id/middleconeinput"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="100"
                             android:ems="10"
                             android:inputType="numberDecimal"
                             android:text="0" />
@@ -148,14 +149,14 @@
                             android:id="@+id/conemiddleplus"
                             android:layout_width="50sp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0"
                             android:text="+" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/lowerconewrapper"
                         android:layout_width="match_parent"
-                        android:layout_height="40sp"
+                        android:layout_height="60sp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -163,21 +164,21 @@
                             android:id="@+id/lowerconelabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="-1"
                             android:text="Lower" />
 
                         <Button
                             android:id="@+id/conelowerminus"
                             android:layout_width="50sp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0"
                             android:text="-" />
 
                         <EditText
                             android:id="@+id/lowerconeinput"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="100"
                             android:ems="10"
                             android:inputType="numberDecimal"
                             android:text="0" />
@@ -186,7 +187,7 @@
                             android:id="@+id/conelowerplus"
                             android:layout_width="50sp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0"
                             android:text="+" />
                     </LinearLayout>
                 </LinearLayout>
@@ -216,28 +217,28 @@
                     <LinearLayout
                         android:id="@+id/uppercubewrapper"
                         android:layout_width="match_parent"
-                        android:layout_height="40sp"
+                        android:layout_height="60sp"
                         android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/uppercubelabel"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:layout_weight="-1"
                             android:text="Upper" />
 
                         <Button
                             android:id="@+id/cubeupperminus"
                             android:layout_width="50sp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0"
                             android:text="-" />
 
                         <EditText
                             android:id="@+id/uppercubeinput"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="100"
                             android:ems="10"
                             android:inputType="numberDecimal"
                             android:text="0" />
@@ -246,14 +247,14 @@
                             android:id="@+id/cubeupperplus"
                             android:layout_width="50sp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0"
                             android:text="+" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/middlecubewrapper"
                         android:layout_width="match_parent"
-                        android:layout_height="40sp"
+                        android:layout_height="60sp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -261,21 +262,21 @@
                             android:id="@+id/middlecubelabel"
                             android:layout_width="53dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="-1"
                             android:text="Middle" />
 
                         <Button
                             android:id="@+id/cubemiddleminus"
                             android:layout_width="50sp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0"
                             android:text="-" />
 
                         <EditText
                             android:id="@+id/middlecubeinput"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="100"
                             android:ems="10"
                             android:inputType="numberDecimal"
                             android:text="0" />
@@ -284,14 +285,14 @@
                             android:id="@+id/cubemiddleplus"
                             android:layout_width="50sp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0"
                             android:text="+" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/lowercubewrapper"
                         android:layout_width="match_parent"
-                        android:layout_height="40sp"
+                        android:layout_height="60sp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -299,21 +300,21 @@
                             android:id="@+id/lowercubelabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="-1"
                             android:text="Lower" />
 
                         <Button
                             android:id="@+id/cubelowerminus"
                             android:layout_width="50sp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0"
                             android:text="-" />
 
                         <EditText
                             android:id="@+id/lowercubeinput"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="100"
                             android:ems="10"
                             android:inputType="numberDecimal"
                             android:text="0" />
@@ -322,7 +323,7 @@
                             android:id="@+id/cubelowerplus"
                             android:layout_width="50sp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0"
                             android:text="+" />
                     </LinearLayout>
                 </LinearLayout>
@@ -353,7 +354,7 @@
                         android:id="@+id/balancesuccessengagedminus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="0"
                         android:text="-" />
 
                     <EditText
@@ -369,7 +370,7 @@
                         android:id="@+id/balancesuccessengagedplus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="0"
                         android:text="+" />
                 </LinearLayout>
 
@@ -391,7 +392,7 @@
                         android:id="@+id/balancesuccessminus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="0"
                         android:text="-" />
 
                     <EditText
@@ -407,7 +408,7 @@
                         android:id="@+id/balancesuccessplus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="0"
                         android:text="+" />
                 </LinearLayout>
 
@@ -429,7 +430,7 @@
                         android:id="@+id/balanceunsuccessminus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="0"
                         android:text="-" />
 
                     <EditText
@@ -445,7 +446,7 @@
                         android:id="@+id/balanceunsuccessplus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="0"
                         android:text="+" />
 
                 </LinearLayout>
@@ -490,7 +491,7 @@
                         android:id="@+id/linksminus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="0"
                         android:text="-" />
 
                     <EditText
@@ -506,7 +507,7 @@
                         android:id="@+id/linksplus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="0"
                         android:text="+" />
                 </LinearLayout>
             </LinearLayout>
@@ -519,11 +520,11 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/scorepenaltieslabel"
+                    android:id="@+id/foulslabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="Points scored from penalties" />
+                    android:text="Fouls (non-technical)" />
 
                 <LinearLayout
                     android:id="@+id/penaltiesscoredwrapper"
@@ -536,7 +537,7 @@
                         android:id="@+id/penaltiesminus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="0"
                         android:text="-" />
 
                     <EditText
@@ -552,166 +553,9 @@
                         android:id="@+id/penaltiesplus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="0"
                         android:text="+" />
                 </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/liftcapabilitywrapper"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/liftcapabilitylabel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Lift capability" />
-
-                <LinearLayout
-                    android:id="@+id/liftcapabilityconewrapper"
-                    android:layout_width="match_parent"
-                    android:layout_height="50sp"
-                    android:orientation="horizontal">
-
-                    <CheckBox
-                        android:id="@+id/coneonlowcheck"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Cone on Low" />
-
-                    <CheckBox
-                        android:id="@+id/coneonmidcheck"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Cone on Mid" />
-
-                    <CheckBox
-                        android:id="@+id/coneonhighcheck"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Cone on High" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/liftcapabilitycubewrapper"
-                    android:layout_width="match_parent"
-                    android:layout_height="50sp"
-                    android:orientation="horizontal">
-
-                    <CheckBox
-                        android:id="@+id/cubeonlowcheck"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Cube on Low" />
-
-                    <CheckBox
-                        android:id="@+id/cubeonmidcheck"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Cube on Mid" />
-
-                    <CheckBox
-                        android:id="@+id/cubeonhighcheck"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Cube on High" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/pinsrobotinflictswrapper"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/totalpinslabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="Total Pins Inflicted" />
-
-                <SeekBar
-                    android:id="@+id/totalpinsseeker"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2048"
-                    android:max="20" />
-
-                <TextView
-                    android:id="@+id/totalpinsinflictedvalue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="0" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/pinsrobottakeswrapper"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/totalpinstakenlabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Total Pins Taken" />
-
-                <SeekBar
-                    android:id="@+id/totalpinstakenseeker"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2048"
-                    android:max="20" />
-
-                <TextView
-                    android:id="@+id/totalpinstakenvalue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="0" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/penaltieswrapper"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/penaltieslabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Penalties" />
-
-                <SeekBar
-                    android:id="@+id/penaltiesseeker"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2048"
-                    android:max="20" />
-
-                <TextView
-                    android:id="@+id/penaltiesvalue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="0" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -736,35 +580,6 @@
 
                 <TextView
                     android:id="@+id/defensevalue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/cooperationwrapper"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/cooperationlabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Cooperation Rating (1-10)" />
-
-                <SeekBar
-                    android:id="@+id/cooperationseeker"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2048"
-                    android:max="9" />
-
-                <TextView
-                    android:id="@+id/cooperationvalue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"

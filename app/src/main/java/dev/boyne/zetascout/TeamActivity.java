@@ -1,40 +1,27 @@
 package dev.boyne.zetascout;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.renderscript.ScriptGroup;
+import android.graphics.Color;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.NumberPicker;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
 
 public class TeamActivity extends AppCompatActivity {
 
     ZetaScout application;
 
     String teamID;
-    int matchID;
     TextView teamHeader;
 
     TabLayout pointtabs;
@@ -57,12 +44,12 @@ public class TeamActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         teamID = getIntent().getStringExtra("teamID");
-        matchID = getIntent().getIntExtra("matchID", 0);
 
         this.application = ((ZetaScout) this.getApplication());
-        System.out.println(this.application.matchData.get(matchID).get(teamID));
-        if (!this.application.matchData.get(matchID).get(teamID).isEmpty()) {
-            matchData = this.application.matchData.get(matchID).get(teamID);
+        System.out.println(this.application.matchData);
+        System.out.println(this.application.matchData.get(teamID));
+        if (!this.application.matchData.get(teamID).isEmpty()) {
+            matchData = this.application.matchData.get(teamID);
             updateData();
         } else {
             categorizedData.put("cone-top", 0);
@@ -79,20 +66,9 @@ public class TeamActivity extends AppCompatActivity {
             uncategorizedData.put("got-mob", false);
             uncategorizedData.put("got-park", false);
             uncategorizedData.put("links", 0);
-            uncategorizedData.put("penalty-points", 0);
+            uncategorizedData.put("fouls", 0);
 
-            uncategorizedData.put("can-cone-low", false);
-            uncategorizedData.put("can-cone-mid", false);
-            uncategorizedData.put("can-cone-hi", false);
-            uncategorizedData.put("can-cube-low", false);
-            uncategorizedData.put("can-cube-mid", false);
-            uncategorizedData.put("can-cube-hi", false);
-
-            uncategorizedData.put("pin-inf", 0);
-            uncategorizedData.put("pin-take", 0);
-            uncategorizedData.put("rat-penalt", 0);
             uncategorizedData.put("rat-defense", 0);
-            uncategorizedData.put("rat-coop", 0);
             uncategorizedData.put("rat-driving", 0);
             uncategorizedData.put("notes", "No notes");
 
@@ -105,9 +81,11 @@ public class TeamActivity extends AppCompatActivity {
 
         saveButton = findViewById(R.id.save);
 
-        teamHeader.setText("Match " + (matchID+1) + " / Team " + teamID);
+        teamHeader.setText("Team " + teamID);
 
         pointtabs = findViewById(R.id.pointcategories);
+
+        findViewById(R.id.teamtop).setBackgroundColor(Color.parseColor("#E88080"));
 
         pointtabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -115,6 +93,7 @@ public class TeamActivity extends AppCompatActivity {
                 // O for teleop, 1 for auton
                 tabID = tab.getText().equals("Teleop") ? 0 : 1;
                 System.out.println(tabID);
+                findViewById(R.id.teamtop).setBackgroundColor(tabID == 0 ? Color.parseColor("#E88080") : Color.parseColor("#8798FF"));
                 switchTabs();
             }
 
@@ -127,7 +106,7 @@ public class TeamActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 populateDataState();
-                application.populateTeamData(matchID, teamID, matchData);
+                application.populateTeamData(teamID, matchData);
             }
         });
 
@@ -160,14 +139,8 @@ public class TeamActivity extends AppCompatActivity {
         setButtonModifier(R.id.middlecubeinput, R.id.cubemiddleplus, 1);
         setButtonModifier(R.id.lowercubeinput, R.id.cubelowerplus, 1);
 
-        setSliderModifier(R.id.totalpinsseeker, R.id.totalpinsinflictedvalue);
-        setSliderModifier(R.id.totalpinstakenseeker, R.id.totalpinstakenvalue);
-
-        setSliderModifier(R.id.penaltiesseeker, R.id.penaltiesvalue);
 
         setSliderModifier(R.id.defenseseeker, R.id.defensevalue, 1);
-
-        setSliderModifier(R.id.cooperationseeker, R.id.cooperationvalue, 1);
 
         setSliderModifier(R.id.drivingseeker, R.id.drivingvalue, 1);
 
@@ -185,7 +158,7 @@ public class TeamActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         populateDataState();
-        application.populateTeamData(matchID, teamID, matchData);
+        application.populateTeamData(teamID, matchData);
         finish();
     }
 
@@ -207,21 +180,10 @@ public class TeamActivity extends AppCompatActivity {
         updateUncategorizedElement(R.id.mobilitycheck, "got-mob", CheckBox.class);
         updateUncategorizedElement(R.id.parkedcheck, "got-park", CheckBox.class);
         updateUncategorizedElement(R.id.linksinput, "links");
-        updateUncategorizedElement(R.id.penaltiesinput, "penalty-points");
+        updateUncategorizedElement(R.id.penaltiesinput, "fouls");
 
-        updateUncategorizedElement(R.id.coneonlowcheck, "can-cone-low", CheckBox.class);
-        updateUncategorizedElement(R.id.coneonmidcheck, "can-cone-mid", CheckBox.class);
-        updateUncategorizedElement(R.id.coneonhighcheck, "can-cone-hi", CheckBox.class);
-        updateUncategorizedElement(R.id.cubeonlowcheck, "can-cube-low", CheckBox.class);
-        updateUncategorizedElement(R.id.cubeonmidcheck, "can-cube-mid", CheckBox.class);
-        updateUncategorizedElement(R.id.cubeonhighcheck, "can-cube-hi", CheckBox.class);
-
-        updateUncategorizedElement(R.id.totalpinsseeker, "pin-inf", SeekBar.class);
-        updateUncategorizedElement(R.id.totalpinstakenseeker, "pin-take", SeekBar.class);
         updateUncategorizedElement(R.id.defenseseeker, "rat-defense", SeekBar.class);
-        updateUncategorizedElement(R.id.penaltiesseeker, "rat-penalties", SeekBar.class);
         updateUncategorizedElement(R.id.defenseseeker, "rat-defense", SeekBar.class);
-        updateUncategorizedElement(R.id.cooperationseeker, "rat-coop", SeekBar.class);
         updateUncategorizedElement(R.id.drivingseeker, "rat-driving", SeekBar.class);
 
         updateUncategorizedElement(R.id.notes, "notes");
@@ -269,21 +231,10 @@ public class TeamActivity extends AppCompatActivity {
         setupData(R.id.mobilitycheck, "got-mob", 2);
         setupData(R.id.parkedcheck, "got-park", 2);
         setupData(R.id.linksinput, "links", 2);
-        setupData(R.id.penaltiesinput, "penalty-points", 2);
+        setupData(R.id.penaltiesinput, "fouls", 2);
 
-        setupData(R.id.coneonlowcheck, "can-cone-low", 2);
-        setupData(R.id.coneonmidcheck, "can-cone-mid", 2);
-        setupData(R.id.coneonhighcheck, "can-cone-hi", 2);
-        setupData(R.id.cubeonlowcheck, "can-cube-low", 2);
-        setupData(R.id.cubeonmidcheck, "can-cube-mid", 2);
-        setupData(R.id.cubeonhighcheck, "can-cube-hi", 2);
-
-        setupData(R.id.totalpinsseeker, "pin-inf", 2);
-        setupData(R.id.totalpinstakenseeker, "pin-take", 2);
         setupData(R.id.defenseseeker, "rat-defense", 2);
-        setupData(R.id.penaltiesseeker, "rat-penalties", 2);
         setupData(R.id.defenseseeker, "rat-defense", 2);
-        setupData(R.id.cooperationseeker, "rat-coop", 2);
         setupData(R.id.drivingseeker, "rat-driving", 2);
 
         setupData(R.id.notes, "notes", 2);
@@ -306,7 +257,10 @@ public class TeamActivity extends AppCompatActivity {
 
     private void updateCategorizedElement(int source, String valueName) {
         // We need only do the current selected as the other tab has either not been modified or has been already saved
-        matchData.get(tabID==0 ? "1" : "0").put(valueName, ((TextView) findViewById(source)).getText().toString());
+        String text = ((TextView) findViewById(source)).getText().toString();
+        if (text.isEmpty())
+            text = "0";
+        matchData.get(tabID==0 ? "1" : "0").put(valueName, text);
     }
 
     private void updateUncategorizedElement(int source, String valueName, Class sourceType) {
@@ -361,6 +315,10 @@ public class TeamActivity extends AppCompatActivity {
         });
     }
     private void modifyValue(EditText input, int mod) {
+        String text = input.getText().toString();
+        if (text.contains("."))
+            Toast.makeText(getApplicationContext(), "No decimals allowed!", Toast.LENGTH_SHORT).show();
+        else if (!text.equals(""))
         input.setText(Integer.toString(Integer.parseInt(input.getText().toString()) + mod));
     }
 }

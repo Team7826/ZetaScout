@@ -6,14 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".MatchActivity">
 
-    <TextView
-        android:id="@+id/teamsinmatch"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Teams In Match"
-        android:textSize="36sp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/teamlist"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/teamsinmatch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Teams"
+            android:textSize="36sp" />
+
+        <Button
+            android:id="@+id/export"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Export" />
+    </LinearLayout>
 
     <ListView
         android:id="@+id/teamlist"
@@ -22,7 +37,7 @@
         app:layout_constraintBottom_toTopOf="@id/addteambuttons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/teamsinmatch">
+        app:layout_constraintTop_toBottomOf="@id/header">
 
     </ListView>
 
