@@ -22,6 +22,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (data.equals("NOTFOUND")) {
             Toast.makeText(getApplicationContext(), "Previous export not found.", Toast.LENGTH_SHORT).show();
+            createFile();
         } else if (data.equals("ERROR")) {
             Toast.makeText(getApplicationContext(), "An error occured. Check logs if in debugging mode for details.", Toast.LENGTH_SHORT).show();
         } else {
@@ -170,6 +172,16 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "Error: " + e, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void createFile() {
+
+        File root = new File(String.valueOf(Environment.getExternalStoragePublicDirectory("Documents")));
+        if (!root.exists()) {
+            root.mkdirs();
+        }
+        File gpxfile = new File(Environment.getExternalStoragePublicDirectory("Documents"), "zetascout.json");
+        Toast.makeText(getApplicationContext(), "Created new file", Toast.LENGTH_SHORT).show();
     }
 
     public String readFile() {
